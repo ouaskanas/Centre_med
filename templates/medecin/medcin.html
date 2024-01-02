@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBorad</title>
+    <link rel="stylesheet" href="{% static 'css/medecin.css'%}"> 
+</head>
+<body>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{% static 'img/logo.png' %}">
+                    <span class="nav">Medecin</span>
+                </a></li>
+                <li><a href="{% url 'medecin'%}">
+                    <span class="nav">DashBorad</span>
+                </a></li>
+                <li><a href="{% url 'salles'%}">          
+                    <span class="nav">Salles</span>
+                </a></li>
+                <li><a href="{% url 'consultation'%}">
+                    <span class="nav">Consultations</span>
+                </a></li>
+                <li><a href="{% url 'profil'%}">
+                    <span class="nav">Profile</span>
+                    <li><a href="{% url 'logout' %}" class="logout">
+                        <span class="nav">Log out</span>
+                    </a></li>
+                </a></li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div class="top">
+                <h1>Medecins Actifs</h1>
+            </div>
+            <div class="user">
+            {% for x in medcin %}
+            <div class="card">
+                <img src="{{x.image.url}}">
+                <h4>{{x.nom}} {{x.prenom}}</h4>
+                <p>{{x.specialite}}</p>
+            <div class="per">
+            </div>
+            <button>Profile</button>
+            </div>
+            {%endfor%}
+            </div>
+            <section class="attendance">
+                <div class="list">
+                    <h1>Reservation de Salles</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Date</th>
+                                <th>Salle</th>
+                                <th>Temps</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in res%}
+                            <tr>
+                                <th>{{x.reservation_number}}</th>
+                                <td>{{x.dr}}</td>
+                                <td>{{x.date}}</td>
+                                <td>{{x.salle}}</td>
+                                <td>{{x.time}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                 
+            </section>
+
+        </section>
+    </div>
+</body>
+</html>

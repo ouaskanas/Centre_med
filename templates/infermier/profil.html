@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profil.css'%}">
+    <style>
+        .imgimp{
+            display: flex;
+         margin: 0 50px;
+        
+        background: rgb(192, 179, 179);
+         color: #251f1f;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 250px;
+        height: 50px;
+        border: none;
+        border-bottom: 1px solid #0082e6;
+        font-family: 'roboto', sans-serif;
+        font-weight:400;
+        font-size: 15px;
+        border-radius: 10px;
+        transition: 0.5s;
+        }
+    .send{
+        margin: 25px 0px;
+    }
+    .user{
+        margin-left: 120px;
+    }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{% static 'img/logo.png' %}">
+                    <span class="nav">Infermier</span>
+                </a></li>
+                <li><a href="{% url 'infermier'%}">
+                    <span class="nav">Medecins</span>
+                </a></li>
+                <li><a href="{% url 'sallesI'%}">          
+                    <span class="nav">Salles</span>
+                </a></li>
+                <li><a href="{% url 'consultationI'%}">
+                    <span class="nav">Consultations</span>
+                </a></li>
+                <li><a href="{% url 'fichepatient'%}">
+                    <span class="nav">Fiche Patient</span>
+                </a></li>
+                <li><a href="{% url 'profilI'%}">
+                    <span class="nav">Profile</span>
+                    <li><a href="{% url 'logout' %}" class="logout">
+                        <span class="nav">Log out</span>
+                    </a></li>
+                </a></li>
+            </ul>
+        </nav>
+        <div class="box">
+            <form method="POST" enctype="multipart/form-data">
+            <img src="{{ Med.image.url}}" class="prf">            
+                {% csrf_token%}
+                <!-- <label for="{{ form.image.id_for_label }}">Importer une image :</label>
+                <input type="file" name="{{ form.image.name }}" accept="static/img/*" id="{{ form.image.id_for_label }}">
+                --> 
+                {{form.nom.label}}
+                {{form.nom}}
+                {{form.prenom.label}}
+                {{form.prenom}}
+                {{form.user.label}}
+                <div class="user">
+                    {{form.user}}
+                </div>
+                {{form.specialite.label}}
+                {{form.specialite}}
+                
+            <button class="user" type="submit">SEND</button>
+
+            </form>
+        </div>
+        </div>
+</body>
+</html>

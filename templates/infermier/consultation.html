@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation</title>
+    <link rel="stylesheet" href="{% static 'css/consultation.css'%}">
+    <style>
+    .card{
+        height: auto;
+    }
+        </style>
+    
+</head>
+<body>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{% static 'img/logo.png' %}">
+                    <span class="nav">Infermier</span>
+                </a></li>
+                <li><a href="{% url 'infermier'%}">
+                    <span class="nav">Medecins</span>
+                </a></li>
+                <li><a href="{% url 'sallesI'%}">          
+                    <span class="nav">Salles</span>
+                </a></li>
+                <li><a href="{% url 'consultationI'%}">
+                    <span class="nav">Consultations</span>
+                </a></li>
+                <li><a href="{% url 'fichepatient'%}">
+                    <span class="nav">Fiche Patient</span>
+                </a></li>
+                <li><a href="{% url 'profilI'%}">
+                    <span class="nav">Profile</span>
+                    <li><a href="{% url 'logout' %}" class="logout">
+                        <span class="nav">Log out</span>
+                    </a></li>
+                </a></li>
+            </ul>
+        </nav>
+        <section class="main">
+            <div class="top">
+                <h1>Consultations</h1>
+            </div>
+                <div class="consultation">
+                    {% for x in rdv %}
+                    <div class="card">
+                        <img src="{% static 'img/aaa.png' %}">
+                        {% csrf_token%}
+                        <h4>{{x.nom}} {{x.prenom}}</h4>
+                        <h5>{{x.date}}</h5>
+                        <p>{{x.raison}}</p>
+                        <button id="acceptBtn" class="acc">Accepter</button>
+                        <button id="rejectBtn" class="ref">Refuser</button>
+                    </div>
+                    {% endfor %}
+                </div>
+        </section>
+        </div>
+    
+</body>
+</html>

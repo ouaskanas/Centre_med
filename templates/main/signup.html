@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creer Compte</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css'%}">
+</head>
+<body>
+    <div class="content">
+        <h1>Creer Compte</h1>
+        <form action="#" method="POST">
+                {% csrf_token%}
+                {{form.username.label}}
+                {{form.username}}
+    
+                {{form.email.label}}
+                {{form.email}}
+    
+                {{form.password1.label}}
+                {{form.password1}}
+    
+                {{form.password2.label}}
+                {{form.password2}}
+                <!-- <input type="text" placeholder="Username">
+                <input type="text" placeholder="name">
+                <input type="password" placeholder="password">
+                <input type="password" placeholder="confirm password"> -->
+                <input class="sub" type="submit" name="Create User">
+        </form>
+        
+        <div class="member">Deja member ? <a href="{% url 'login'%}">Se Connecter</a></div>
+    </div>
+</body>
+</html>

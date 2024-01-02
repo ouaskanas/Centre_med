@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/salles.css'%}">
+    <title>Salles</title>
+    <style>
+        .box{
+        margin: 50px 400px;
+        background: #fff;
+        right: 50%;
+        box-sizing: border-box;
+        width: 360px;
+        height: 500px;
+        border: 2px solid #eee;
+        box-shadow: -3px -3px 7px #ffffff73,3px 3px , 5px rgba(94,104,121,0,288);
+        border-radius: 5px;
+        margin-top: 50px ;
+        overflow: hidden;
+        }
+        .prf{
+            box-sizing: border-box;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 0 110px;
+            border: 5px solid #0082e6;
+            padding: 3px;
+        }
+        input{
+            display: flex;
+            margin: 50px 50px;
+            box-sizing: border-box;
+            background: white;
+            color: #251f1f;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 250px;
+            height: 50px;
+            border: none;
+            border-bottom: 1px solid #0082e6;
+            font-family: 'roboto', sans-serif;
+            font-weight:400;
+            font-size: 15px;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+        label{
+            box-sizing: border-box;
+            font-size: 20px;
+            background-color:rgba(223,223,223);;
+            color: black;
+            padding: 2px 15px;
+            border-radius: 5px;
+            transition: all 0.5s;
+        }
+        label:hover{
+            background: linear-gradient(120deg,#2980b9, #1dbd7f);
+            color: #ffffff;
+            transition:1s;
+        }
+        button
+        {
+            margin-left: 100px;
+            width: 30%;
+            margin-top: 50px;
+            padding :7px;
+            cursor: pointer;
+            border-radius: 10px;
+            background: rgba(223,223,223);
+            border:1px;
+        }
+        button:hover{
+            background: linear-gradient(120deg,#2980b9, #1dbd7f);
+            color: #ffffff;
+            transition:1s;
+        }
+        .but{
+            margin: 0 90px;
+        }
+        .alig{
+            display: flex;
+            margin-top: 50px;
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="logo">
+                        <img src="{% static 'img/logo.png' %}">
+                        <span class="nav">Infermier</span>
+                    </a></li>
+                    <li><a href="{% url 'infermier'%}">
+                        <span class="nav">Medecins</span>
+                    </a></li>
+                    <li><a href="{% url 'sallesI'%}">          
+                        <span class="nav">Salles</span>
+                    </a></li>
+                    <li><a href="{% url 'consultationI'%}">
+                        <span class="nav">Consultations</span>
+                    </a></li>
+                    <li><a href="{% url 'fichepatient'%}">
+                        <span class="nav">Fiche Patient</span>
+                    </a></li>
+                    <li><a href="{% url 'profilI'%}">
+                        <span class="nav">Profile</span>
+                        <li><a href="{% url 'logout' %}" class="logout">
+                            <span class="nav">Log out</span>
+                        </a></li>
+                    </a></li>
+                </ul>
+            </nav>
+    </div>
+    <section class="main">
+        <div class="top">
+            <h1>Salles Disponibles</h1>
+        </div>
+        <div class="salles">
+        {% for x in salles %}
+        {% if x.libre == True %}
+            <div class="card">
+                <img src="{{ x.image.url}}">
+                <h4>{{ x.num }}</h4>
+                <p>{{ x.description}}</p>
+            </div>
+            {% endif%}
+        {% endfor %}
+        </div>
+        <div class="box">
+            <form method="POST">
+                {% csrf_token%}
+                <div class="alig">
+                    {{form.dr.label}}
+                    {{form.dr}}
+                </div>
+                <div class="alig">
+                    {{form.salle.label}}
+                    {{form.salle}}
+                </div>
+                {{form.date.label}}
+                {{form.date}}
+                {{form.time.label}}
+                {{form.time}}
+    
+            <button type="submit">SEND</button>
+    
+            </form>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profil.css'%}">
+    <style>
+        .imgimp{
+            display: flex;
+         margin: 0 50px;
+        
+        background: rgb(192, 179, 179);
+         color: #251f1f;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 250px;
+        height: 50px;
+        border: none;
+        border-bottom: 1px solid #0082e6;
+        font-family: 'roboto', sans-serif;
+        font-weight:400;
+        font-size: 15px;
+        border-radius: 10px;
+        transition: 0.5s;
+        }
+    .send{
+        margin: 25px 0px;
+    }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="{% static 'img/logo.png' %}">
+                    <span class="nav">Medecin</span>
+                </a></li>
+                <li><a href="{% url 'medecin'%}">
+                    <span class="nav">DashBorad</span>
+                </a></li>
+                <li><a href="{% url 'salles'%}">          
+                    <span class="nav">Salles</span>
+                </a></li>
+                <li><a href="{% url 'consultation'%}">
+                    <span class="nav">Consultations</span>
+                </a></li>
+                <li><a href="{% url 'profil'%}">
+                    <span class="nav">Profile</span>
+                    <li><a href="{% url 'logout' %}" class="logout">
+                        <span class="nav">Log out</span>
+                    </a></li>
+                </a></li>
+            </ul>
+        </nav>
+        <div class="box">
+            <form method="POST" enctype="multipart/form-data">
+            <img src="{{ Med.image.url}}" class="prf">            
+                {% csrf_token%}
+                <!-- <label for="{{ form.image.id_for_label }}">Importer une image :</label>
+                <input type="file" name="{{ form.image.name }}" accept="static/img/*" id="{{ form.image.id_for_label }}">
+                --> 
+                {{form.nom.label}}
+                {{form.nom}}
+                {{form.prenom.label}}
+                {{form.prenom}}
+                {{form.telephone.label}}
+                {{form.telephone}}
+                {{form.specialite.label}}
+                {{form.specialite}}
+            <button type="submit">SEND</button>
+
+            </form>
+        </div>
+        </div>
+</body>
+</html>

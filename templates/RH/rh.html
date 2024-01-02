@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Employés - Cabinet Médical</title>
+    <style>
+*{
+    margin: 0;
+    padding:0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background: linear-gradient(120deg,#2980b9, #1dbd7f);
+}
+        nav{
+    position: sticky;
+    top:0; 
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    width: 155px;
+    background: #ffffff;
+    overflow: hidden;
+    transition: 1s;
+}
+nav:hover{
+    width: 280px;
+    transition :1s; 
+}
+.top h1{
+    color: #ffffff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+.logo{
+    text-align: center;
+    display: flex;
+    margin: 20px 0 0 20px;
+    padding-bottom: 3rem;
+}
+.logo img{
+    width: 100px;
+    height: 120px;
+    
+}
+.logo span{
+    font-weight: bold;
+    padding-left: 15px;
+    margin :20% 0;
+    font-size: 18px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+a{
+    font-weight: bold;
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+    color: #2980b9;
+    display: table;
+    padding: 10px;
+    margin:10px;
+}
+.content{
+    display: flex;
+}
+nav .fas{
+    position: relative;
+    width: 70px;
+    height: 40px;
+    top: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.nav{
+    position:relative; 
+    top :0; 
+    margin-left: 10px;
+    
+}
+a:hover{
+    background: #eee;
+    border-radius: 10px;
+}
+.logout{
+    position: absolute;
+    bottom: 0;
+}
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .edit-button {
+            background-color: #ffa500;
+        }
+
+        .edit-button:hover {
+            background-color: #ff8c00;
+        }
+
+        .edit-container {
+            display: none;
+        }
+
+        .edit-container.active {
+            display: block;
+        }
+
+
+        .container label,
+        .container input,
+        .container select {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">
+                    <img src="/logo.png">
+                    <span class="nav">RH</span>
+                </a></li>
+                <li><a href="#">
+                    <span class="nav">Main</span>
+                </a></li>
+                    <li><a href="../Acueil/acueil.html" class="logout">
+                        <span class="nav">Log out</span>
+                    </a></li>
+                </a></li>
+            </ul>
+        </nav>
+        
+    
+    <div class="container">
+        <h2>Liste des Employés</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Poste</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="employee-list">
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="container">
+        <h2>Ajouter un Employé</h2>
+        <form id="add-employee-form">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required><br> 
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required><br> 
+            <label for="poste">Poste :</label>
+            <select id="poste" name="poste" required><br> 
+                <option value="Médecin">Médecin</option>
+                <option value="Infirmière">Infirmière</option>
+            </select>
+            <div class="button-container">
+                <button type="submit">Ajouter</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container edit-container" id="edit-employee-container">
+        <h2>Modifier un Employé</h2>
+        <form id="edit-employee-form">
+            <input type="hidden" id="edit-index" name="edit-index">
+            <label for="edit-nom">Nom :</label>
+            <input type="text" id="edit-nom" name="edit-nom" required><br> 
+            <label for="edit-prenom">Prénom :</label>
+            <input type="text" id="edit-prenom" name="edit-prenom" required><br> 
+            <label for="edit-poste">Poste :</label>
+            <select id="edit-poste" name="edit-poste" required><br> 
+                <option value="Médecin">Médecin</option>
+                <option value="Infirmière">Infirmière</option>
+            </select>
+            <div class="button-container">
+                <button type="button" onclick="updateEmployee()">Enregistrer</button>
+                <button type="button" onclick="cancelEdit()">Annuler</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const employees = [
+            { nom: "Doe", prenom: "John", poste: "Médecin" },
+            { nom: "Smith", prenom: "Jane", poste: "Infirmière" },
+        ];
+
+        let editingIndex = -1;
+
+        function displayEmployees() {
+            const employeeList = document.getElementById("employee-list");
+            employeeList.innerHTML = "";
+
+            employees.forEach((employee, index) => {
+                const row = employeeList.insertRow();
+                row.innerHTML = `
+                    <td>${employee.nom}</td>
+                    <td>${employee.prenom}</td>
+                    <td>${employee.poste}</td>
+                    <td>
+                        <button onclick="editEmployee(${index})">Modifier</button>
+                        <button onclick="deleteEmployee(${index})">Supprimer</button>
+                    </td>
+                `;
+            });
+        }
+
+        document.getElementById("add-employee-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nom = document.getElementById("nom").value;
+            const prenom = document.getElementById("prenom").value;
+            const poste = document.getElementById("poste").value;
+
+            if (nom && prenom && poste) {
+                employees.push({ nom, prenom, poste });
+                displayEmployees();
+                document.getElementById("add-employee-form").reset();
+            }
+        });
+
+        function editEmployee(index) {
+            const employee = employees[index];
+            document.getElementById("edit-nom").value = employee.nom;
+            document.getElementById("edit-prenom").value = employee.prenom;
+            document.getElementById("edit-poste").value = employee.poste;
+            document.getElementById("edit-index").value = index;
+            document.getElementById("add-employee-form").style.display = "none";
+            document.getElementById("edit-employee-container").classList.add("active");
+        }
+
+        function updateEmployee() {
+            const index = document.getElementById("edit-index").value;
+            const nom = document.getElementById("edit-nom").value;
+            const prenom = document.getElementById("edit-prenom").value;
+            const poste = document.getElementById("edit-poste").value;
+
+            if (index !== "" && nom && prenom && poste) {
+                employees[index] = { nom, prenom, poste };
+                displayEmployees();
+                cancelEdit();
+            }
+        }
+
+        function cancelEdit() {
+            document.getElementById("edit-employee-container").classList.remove("active");
+            document.getElementById("add-employee-form").style.display = "block";
+            document.getElementById("edit-index").value = -1;
+            document.getElementById("edit-nom").value = "";
+            document.getElementById("edit-prenom").value = "";
+            document.getElementById("edit-poste").value = "Médecin"; 
+        }
+
+        function deleteEmployee(index) {
+            const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet employé ?");
+            if (confirmation) {
+                employees.splice(index, 1);
+                displayEmployees();
+            }
+        }
+
+        displayEmployees();
+    </script>
+    </div>
+</body>
+</html>
