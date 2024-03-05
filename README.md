@@ -5,10 +5,10 @@ With features like real-time patient updates, customizable workflows, and insigh
 Join us in shaping the future of medical administration – where precision meets technology and compassion meets efficiency
 
 # SetUp 
-  HTML/CSS
-  JavaScript 
-  Python (Django) 
-  JSON 
+ * HTML/CSS
+ * JavaScript 
+ * Python (Django) 
+ * JSON 
 
 # Screens 
 ![8](https://github.com/ouaskanas/Centre_med/assets/83678973/1e680f60-a137-42bb-8f88-00b6f4fa92c9)
